@@ -35,7 +35,12 @@ bool PressButton(HButton but,HWND hwnd,UINT msg,WPARAM wParam,LPARAM lParam){
 // }HWindow;
 
 typedef struct{
-
+    HWND hwnd;
+    COORD c;
+    int width;
+    int height;
+    bool border;
+    int id;
 }HBtutton;
 
 typedef struct{
@@ -65,6 +70,16 @@ bool PressButton(HButton but,HWND hwnd,UINT msg,WPARAM wParam,LPARAM lParam){
     return false;
 }
 
+wchar_t* GetTextEdit(HEdit handle){
+    wchar_t *buffer;
+    GetTextWindow(handle.hwnd,buffer,handle.maxcount);
+    return buffer;
+}
+
+
+
 
 BOOL RegClass(char *titleclass,HINST hI,LRESULT CALLBACK (*func)(HWND hwnd,UINT Msg,WPARAM wParam,LPARAM lParam));
-HWND CreateWin(char *title,COORD c,int width,int height,HINST hI,BOOL child,HWND parent,HMENU hmenu);
+HWND CreateWin(char *title,COORD c,int width,int height,HINST hI,BOOL child,HWND parent,HMENU hmenu){
+
+}
