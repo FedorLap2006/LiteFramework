@@ -1,85 +1,60 @@
 #pragma once
 
-#include <Windows.h>
-#include <stdbool.h>
+#include <windows.h>
+#include <string>
+#include <vector>
+#include <iterator>
 
-typedef HINSTANCE HINST;
+using namespace std;
+
+typedef HINSTANCE HInst;
+
+#define W_BUTTON 1
+#define W_EDIT 2
+#define W_LISTVIEW 3
+#define W_LISTBOX 4
+#define W_COMBOBOX 5
 
 
-#define CallbackFunc(funcname) LRESULT CALLBACK funcname(HWND hwnd,UINT Msg,WPARAM wParam,LPARAM lParam)
-#define CallbackParams\
-    hwnd,Msg,wParam,lParam
+
+
+
+class Widget{
+	protected:
+		HWND hwid;
+		HInst hI;
+		//COORD c; -- no used(in containers[VBox,HBox,ALPane,SimplePane,GridPane]
+		int width;
+		int height;
+		DWORD styles;
+		int TTYPE;
+};
+
+
 /*
-CallbackFunc(func_label){
-    // your code
-}
+example
+=-=-=-=
+
+Window win;
+
+Scene sc;
+
+win.setTitle("example win");
+win.setScene(sc);
+Widget button = NewButton("!",false,70,70,"Comic Sans",20);
+
+sc.Add(100,100,button);
+
+win.show();
+
 
 */
 
-/*
-
-CallbackFunc(WndProc){
-    if(PressButton(ButExample,CallBackParams)) PrintFormW(Hwindow,{100,100},100,70,"But press");
-}
-
-bool PressButton(HButton but,HWND hwnd,UINT msg,WPARAM wParam,LPARAM lParam){
-    if(msg == WM_COMMAND && LOWORD(wParam) == but.id) return true;
-    return false;
-}
-
-
-*/
-
-// typedef struct{
-//
-// }HWindow;
-
-typedef struct{
-    HWND hwnd;
-    COORD c;
-    int width;
-    int height;
-    bool border;
-    int id;
-}HBtutton;
-
-typedef struct{
-
-}HEdit;
-
-typedef struct{
-
-}HBrush;
-
-typedef struct{
-
-}Htext;
-
-
-typedef struct{
-    HWND hlist;
-    COORD c;
-    int width;
-    int height;
-    bool border;
-    int cur_sel_el;
-}Hlist;
-
-bool PressButton(HButton but,HWND hwnd,UINT msg,WPARAM wParam,LPARAM lParam){
-    if(msg == WM_COMMAND && LOWORD(wParam) == but.id) return true;
-    return false;
-}
-
-wchar_t* GetTextEdit(HEdit handle){
-    wchar_t *buffer;
-    GetTextWindow(handle.hwnd,buffer,handle.maxcount);
-    return buffer;
-}
 
 
 
 
-BOOL RegClass(char *titleclass,HINST hI,LRESULT CALLBACK (*func)(HWND hwnd,UINT Msg,WPARAM wParam,LPARAM lParam));
-HWND CreateWin(char *title,COORD c,int width,int height,HINST hI,BOOL child,HWND parent,HMENU hmenu){
-
-}
+class App{
+	public:
+		
+};
